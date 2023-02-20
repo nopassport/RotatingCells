@@ -19,7 +19,9 @@ class CustomRotatingCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var label: UILabel = {
+    private lazy var label: UILabel = {
+//        let origin = CGPoint(x: bounds.width / 2,
+//                             y:  bounds.height / 2)
         let label = UILabel(frame: CGRect(origin: .zero ,
                                           size: CGSize(width: 200,
                                                        height: 50)) )
@@ -43,7 +45,7 @@ class CustomRotatingCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        label.center = center
+//        label.center = center
         imageView.frame = contentView.bounds
     }
     
@@ -72,6 +74,9 @@ class CustomRotatingCell: UICollectionViewCell {
         layer.cornerRadius = 18
         clipsToBounds = true
         backgroundColor = .separator
+        let origin = CGPoint(x: (bounds.width / 2) - (label.bounds.width / 2),
+                             y:  (bounds.height / 2) - (label.bounds.height / 2))
+        label.frame.origin = origin
         contentView.addSubview(label)
         contentView.addSubview(imageView)
     }
